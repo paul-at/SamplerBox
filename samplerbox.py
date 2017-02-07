@@ -460,13 +460,17 @@ if USE_SERIALPORT_MIDI:
 
     def MidiSerialCallback():
         message = [0, 0, 0]
+	runningstatus = 0
         while True:
             i = 0
             while i < 3:
                 data = ord(ser.read(1))  # read a byte
-                print data
                 if data >> 7 != 0:
                     i = 0      # status byte!   this is the beginning of a midi message: http://www.midi.org/techspecs/midimessages.php
+                    runningstatus = data
+                elif i == 0 and runningstatus > 0: # use stored running status if available
+                    message[i] = runningstatus
+                    i += 1
                 message[i] = data
                 i += 1
                 if i == 2 and message[0] >> 4 == 12:  # program change: don't wait for a third byte: it has only 2 bytes
