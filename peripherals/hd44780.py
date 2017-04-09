@@ -21,12 +21,12 @@ import RPi.GPIO as GPIO
 import time
 
 # Define GPIO to LCD mapping
-LCD_RS = 25
-LCD_E  = 24
-LCD_D4 = 23
-LCD_D5 = 22
-LCD_D6 = 27
-LCD_D7 = 17
+LCD_RS = 5
+LCD_E  = 6
+LCD_D4 = 12
+LCD_D5 = 13
+LCD_D6 = 16
+LCD_D7 = 26
 
 
 # Define some device constants
